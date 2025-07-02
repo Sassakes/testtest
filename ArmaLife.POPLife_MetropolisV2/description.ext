@@ -1,0 +1,214 @@
+enableDebugConsole[] = {"76561198319377968"};
+disableChannels[] = {
+    {0, true, true}, 
+    {1, true, true},
+    {2, true, true}, 
+    {3, true, true}, 
+    {4, true, true}, 
+    {5, true, true}, 
+    {6, true, true}, 
+    {7, true, true},  
+    {8, true, true}, 
+    {9, true, true} 
+};  
+overviewText = "$STR_MISC_overviewText";
+
+#include "CfgRemoteExec.hpp"
+#include "CfgDisabledCommands.hpp"
+#include "dialog\MasterHandler.hpp"
+#include "config\Config_Master.hpp"
+#include "maverick\maverick_master.cpp"
+#include "infiSTAR_AdminMenu.hpp"
+
+class CfgServer {
+    DatabaseName = "armalife";
+    DebugMode = 0;
+    HeadlessSupport = 0;
+};
+
+class RscTitles {
+    #include "dialog\ArmaLife_Progress.hpp"
+    #include "dialog\ArmaLife_Hud.hpp"
+    #include "dialog\ArmaLife_JailHud.hpp"
+    #include "dialog\ArmaLife_Deathscreen.hpp"
+    #include "maverick\talent-tree-modular\gui\_masterTitles.cpp"
+};
+
+class CfgFunctions {
+    #include "Functions.hpp"
+    #include "maverick\maverick_functions_master.cpp"
+};
+
+class CfgDebriefing {
+    class NotWhitelisted {
+        title = "$STR_NotWhitelisted_Title";
+        subtitle = "$STR_NotWhitelisted_SubTitle";
+        description = "$STR_NotWhitelisted_Descript";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class Blacklisted {
+        title = "$STR_Blacklisted_Title";
+        subtitle = "$STR_Blacklisted_SubTitle";
+        description = "$STR_Blacklisted_Descript";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class ArmaLife_End {
+        title = "DISCONNECTED TO LOBBY";
+        subtitle = "Thank you for visiting Arma-Life.";
+        description = "You are very welcome back at any point in time. We are grateful for you stopping by and playing! We certainly hope you enjoyed yourself. Your player data has been synced. Do not forget to check out our forums at http://arma-life.com";
+        pictureBackground = "\a3\ui_f\data\gui\cfg\Debriefing\debriefingBackground_co.paa";
+        picture = "\a3\ui_f\data\gui\cfg\Hints\ActionMenu_ca.paa";
+        pictureColor[] = {1, 1, 1, 1};
+    };
+
+    class AddonsCheck {
+        title = "$STR_AddonCheck_Title";
+        subtitle = "$STR_AddonCheck_SubTitle";
+        description = "$STR_AddonCheck_Descript";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class oopsie {
+        title = "oopsie";
+        subTitle = "one or more of your variables didn't load in";
+        description = "please relog";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class BadName {
+        title = "Forbidden Player Name";
+        subtitle = "You shall not pass!";
+        description = "Your player name contains non standard A-Z letters that cannot be used on this server.";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class GlobalBan {
+        title = "You are Global Banned!";
+        subtitle = "You shall not pass!";
+        description = "You are infiSHIT global banned and cannot play on this server, sorry!";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+};
+
+class CfgNotifications {
+    class MedicalRequestEmerg {
+        title = "$STR_MedicalRequestEmerg_Title";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+        description = "%1";
+        duration = 5;
+        priority = 7;
+    };
+
+    class DeliveryAssigned {
+        title = "$STR_DeliveryAssigned_Title";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+        description = "%1";
+        duration = 10;
+        priority = 7;
+    };
+
+    class DeliveryFailed {
+        title = "$STR_DeliveryFailed_Title";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskiconfailed_ca.paa";
+        description = "%1";
+        duration = 7;
+        priority = 7;
+    };
+
+    class DeliverySucceeded {
+        title = "$STR_DeliverySucceeded_Title";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcondone_ca.paa";
+        description = "%1";
+        duration = 6;
+        priority = 6;
+    };
+
+    class TextMessage {
+        title = "$STR_TextMessage_Title";
+        iconPicture = "icons\ico_messageNew.paa";
+        description = "%1";
+        duration = 10;
+        priority = 6;
+    };
+
+    class PoliceDispatch {
+        title = "$STR_PoliceDispatch_Title";
+        iconPicture = "icons\ico_messagePolice.paa";
+        description = "%1";
+        duration = 10;
+        priority = 6;
+    };
+
+    class AdminDispatch {
+        title = "$STR_AdminDispatch_Title";
+        iconPicture = "icons\ico_messageAdmin.paa";
+        description = "%1";
+        duration = 10;
+        priority = 6;
+    };
+
+    class AdminMessage {
+        title = "$STR_AdminMessage_Title";
+        iconPicture = "icons\ico_messageAdmin.paa";
+        description = "%1";
+        duration = 10;
+        priority = 5;
+    };
+    
+    class TruckMissionStart {
+      title = "$STR_TruckStart_Title";
+      iconPicture = "ArmalifeCore\images\icons\ico_truckStart.paa";
+      description = "%1";
+      duration = 10;
+      priority = 8;
+    };
+    
+    class TruckMissionReward {
+      title = "$STR_TruckReward_Title";
+      iconPicture = "ArmalifeCore\images\icons\ico_money.paa";
+      description = "%1";
+      duration = 10;
+      priority = 8;
+    };
+
+    class SmugglerAssigned
+    {
+        title = "Smuggler Job Accepted";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+        description = "%1";
+        duration = 10;
+        priority = 7;
+    };
+
+    class SmugglerFailed
+    {
+        title = "Smuggler Job Failed";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskiconfailed_ca.paa";
+        description = "%1";
+        duration = 7;
+        priority = 7;
+    };
+
+    class SmugglerSucceeded
+    {
+        title = "Smuggler Job Completed";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcondone_ca.paa";
+        description = "%1";
+        duration = 6;
+        priority = 6;
+    };
+};
